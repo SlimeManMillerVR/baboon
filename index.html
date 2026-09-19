@@ -30,10 +30,8 @@
       overflow-x: hidden;
     }
 
-    /* ANA EKRAN */
     .screen {
       position: relative;
-
       min-height: 180vh;
       width: 100%;
 
@@ -50,7 +48,6 @@
         linear-gradient(#292d31, #111315);
     }
 
-    /* KIRMIZI KENAR IŞIKLARI */
     .red-line-left,
     .red-line-right {
       position: fixed;
@@ -79,7 +76,6 @@
       right: 22px;
     }
 
-    /* ANA METAL PANEL */
     .panel {
       max-width: 1100px;
 
@@ -108,7 +104,6 @@
         0 20px 50px rgba(0,0,0,0.5);
     }
 
-    /* BAŞLIK */
     h1 {
       font-size: 42px;
 
@@ -120,7 +115,6 @@
         0 2px 4px #000;
     }
 
-    /* MAVİ YAZILAR */
     .blue-link {
       color: #2997ff;
 
@@ -140,7 +134,6 @@
         0 0 8px rgba(41,151,255,0.7);
     }
 
-    /* AÇIKLAMA */
     p {
       margin-top: 20px;
 
@@ -151,7 +144,6 @@
       font-size: 16px;
     }
 
-    /* METAL ÇİZGİ */
     .metal-line {
       height: 2px;
 
@@ -170,7 +162,6 @@
       opacity: 0.35;
     }
 
-    /* 4 BÖLÜM */
     .four-sections {
       max-width: 1100px;
 
@@ -185,7 +176,6 @@
       align-items: stretch;
     }
 
-    /* KART */
     .small-section {
       min-height: 350px;
 
@@ -228,12 +218,6 @@
       transform: translateY(-3px);
     }
 
-    /* GOOGOO KARTI TIKLANABILIR */
-    .googoo-card {
-      cursor: pointer;
-    }
-
-    /* KART BAŞLIKLARI */
     .egg-title {
       width: 100%;
 
@@ -253,7 +237,6 @@
         0 2px 4px #000;
     }
 
-    /* RESİMLER */
     .item-image {
       width: 100%;
 
@@ -268,7 +251,6 @@
       border-radius: 5px;
     }
 
-    /* GET BUTONU */
     .get-button {
       width: 100%;
 
@@ -324,7 +306,8 @@
       transform: translateY(1px);
     }
 
-    /* GOOGOO BUTONLARI */
+    /* GOOGOO SATIN ALMA BUTONLARI */
+
     .googoo-buttons {
       width: 100%;
 
@@ -364,7 +347,6 @@
         filter 0.15s ease;
     }
 
-    /* SARI BUTON */
     .yellow-button {
       border: 1px solid #d99d00;
 
@@ -382,7 +364,6 @@
       transform: translateY(-1px);
     }
 
-    /* YEŞİL BUTON */
     .green-button {
       border: 1px solid #198c45;
 
@@ -400,7 +381,6 @@
       transform: translateY(-1px);
     }
 
-    /* 30 GOLD KIRMIZI ÇİZGİ */
     .crossed-gold {
       position: relative;
 
@@ -433,6 +413,7 @@
     }
 
     /* SCROLLBAR */
+
     ::-webkit-scrollbar {
       width: 10px;
     }
@@ -458,6 +439,7 @@
     }
 
     /* TABLET */
+
     @media (max-width: 900px) {
 
       .four-sections {
@@ -467,6 +449,7 @@
     }
 
     /* TELEFON */
+
     @media (max-width: 700px) {
 
       .screen {
@@ -603,10 +586,7 @@
 
 
       <!-- 3. GOOGOO EGG -->
-      <div
-        class="small-section googoo-card"
-        onclick="openGoogoo()"
-      >
+      <div class="small-section">
 
         <div class="egg-title">
           GOOGOO EGG
@@ -618,22 +598,39 @@
           class="item-image"
         >
 
-        <div class="googoo-buttons">
+        <!-- NORMAL GET -->
+        <button
+          id="googooGet"
+          class="get-button"
+          type="button"
+          onclick="showGoogooOptions(event)"
+        >
+          GET
+        </button>
+
+
+        <!-- GET'E BASINCA ÇIKACAK BUTONLAR -->
+        <div
+          id="googooButtons"
+          class="googoo-buttons"
+          style="display: none;"
+        >
 
           <!-- SARI 0.99$ -->
           <button
             class="googoo-button yellow-button"
             type="button"
-            onclick="event.stopPropagation(); return false;"
+            onclick="return false;"
           >
             0.99$
           </button>
+
 
           <!-- YEŞİL 30 GOLD -->
           <button
             class="googoo-button green-button"
             type="button"
-            onclick="event.stopPropagation(); return false;"
+            onclick="return false;"
           >
             <span class="crossed-gold">
               30 GOLD
@@ -675,19 +672,17 @@
 
 
   <script>
-    function openGoogoo() {
-      // GOOGOO EGG'ye tıklanınca çalışır.
-      // Şimdilik satın alma veya başka işlem yapmaz.
-      console.log("GOOGOO EGG clicked");
+    function showGoogooOptions(event) {
+
+      event.stopPropagation();
+
+      const getButton = document.getElementById("googooGet");
+      const buttons = document.getElementById("googooButtons");
+
+      getButton.style.display = "none";
+      buttons.style.display = "flex";
     }
   </script>
-
-</body>
-</html>
-
-
-
-  </main>
 
 </body>
 </html>
