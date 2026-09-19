@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Metal UI</title>
 
   <style>
@@ -14,6 +15,7 @@
 
     body {
       min-height: 100vh;
+
       background:
         radial-gradient(
           circle at center,
@@ -24,14 +26,20 @@
 
       color: white;
       font-family: Arial, sans-serif;
+
       overflow-x: hidden;
     }
 
-    /* Ana Ekran */
+    /* =========================================
+       ANA EKRAN
+       ========================================= */
+
     .screen {
       position: relative;
+
       min-height: 180vh;
       width: 100%;
+
       padding: 80px 70px;
 
       background:
@@ -42,17 +50,26 @@
           rgba(255,255,255,0.025) 50%,
           transparent 80%
         ),
-        linear-gradient(#292d31, #111315);
+        linear-gradient(
+          #292d31,
+          #111315
+        );
     }
 
-    /* Sol Kırmızı Işık */
+
+    /* =========================================
+       KIRMIZI KENAR IŞIKLARI
+       ========================================= */
+
     .red-line-left,
-    /* Sağ Kırmızı Işık */
     .red-line-right {
       position: fixed;
+
       top: 0;
       bottom: 0;
+
       width: 4px;
+
       z-index: 10;
 
       background: #ff2020;
@@ -72,10 +89,16 @@
       right: 22px;
     }
 
-    /* Ana Metal Panel */
+
+    /* =========================================
+       ANA METAL PANEL
+       ========================================= */
+
     .panel {
       max-width: 1100px;
+
       min-height: 500px;
+
       margin: 0 auto 100px;
 
       padding: 40px;
@@ -90,6 +113,7 @@
         );
 
       border: 1px solid #555a5f;
+
       border-radius: 8px;
 
       box-shadow:
@@ -98,20 +122,32 @@
         0 20px 50px rgba(0,0,0,0.5);
     }
 
-    /* Başlık */
+
+    /* =========================================
+       BAŞLIK
+       ========================================= */
+
     h1 {
       font-size: 42px;
+
       letter-spacing: 4px;
+
       color: #eee;
 
       text-shadow:
         0 2px 4px #000;
     }
 
-    /* Mavi Tıklanabilir Yazılar */
+
+    /* =========================================
+       MAVİ YAZILAR
+       ========================================= */
+
     .blue-link {
       color: #2997ff;
+
       text-decoration: none;
+
       cursor: pointer;
 
       transition:
@@ -123,20 +159,32 @@
       color: #66b5ff;
 
       text-shadow:
-        0 0 8px rgba(41, 151, 255, 0.7);
+        0 0 8px rgba(41,151,255,0.7);
     }
 
-    /* Açıklama */
+
+    /* =========================================
+       AÇIKLAMA
+       ========================================= */
+
     p {
       margin-top: 20px;
+
       color: #aaa;
+
       line-height: 1.7;
+
       font-size: 16px;
     }
 
-    /* Metalik Çizgi */
+
+    /* =========================================
+       METAL ÇİZGİ
+       ========================================= */
+
     .metal-line {
       height: 2px;
+
       margin-top: 30px;
 
       background:
@@ -152,25 +200,43 @@
       opacity: 0.35;
     }
 
+
     /* =========================================
-       4 ALT BÖLÜM
+       4 BÖLÜM
        ========================================= */
 
     .four-sections {
       max-width: 1100px;
+
       margin: 0 auto 100px;
 
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+
+      grid-template-columns:
+        repeat(4, 1fr);
 
       gap: 20px;
+
+      align-items: start;
     }
 
-    /* Her Bölüm */
+
+    /* =========================================
+       KART
+       ========================================= */
+
     .small-section {
       min-height: 350px;
 
-      padding: 30px;
+      padding: 20px;
+
+      position: relative;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
 
       background:
         linear-gradient(
@@ -182,6 +248,7 @@
         );
 
       border: 1px solid #555a5f;
+
       border-radius: 8px;
 
       box-shadow:
@@ -196,30 +263,143 @@
 
     .small-section:hover {
       border-color: #777;
+
       transform: translateY(-3px);
     }
 
-    /* İlk Bölüm Daha Küçük */
+
+    /* =========================================
+       EGGS BÖLÜMÜ
+       ========================================= */
+
     .small-section.first {
       min-height: 250px;
+
+      align-items: flex-start;
+
+      padding: 30px;
     }
 
-    /* EGGS */
+
     .eggs {
       font-size: 28px;
+
       letter-spacing: 3px;
+
       color: #eee;
 
       text-shadow:
         0 2px 4px #000;
     }
 
-    /* Boş Bölümlerin İçeriği */
-    .empty {
-      min-height: 1px;
+
+    /* =========================================
+       RESİM ALANI
+       ========================================= */
+
+    .item-image {
+      width: 100%;
+
+      height: 210px;
+
+      object-fit: contain;
+
+      display: block;
+
+      margin-bottom: 18px;
+
+      border-radius: 5px;
+
+      /* Resim yoksa kırık ikon yerine alan yine düzgün kalır */
     }
 
-    /* Scrollbar */
+
+    /* Eggs resminin boyutu */
+
+    .egg-image {
+      width: 100%;
+
+      height: 150px;
+
+      object-fit: contain;
+
+      margin-top: 20px;
+    }
+
+
+    /* =========================================
+       GET BUTONU
+       ========================================= */
+
+    .get-button {
+      width: 100%;
+
+      height: 48px;
+
+      margin-top: auto;
+
+      border: 1px solid #1685e5;
+
+      border-radius: 5px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #2997ff,
+          #0878d1
+        );
+
+      color: white;
+
+      font-size: 18px;
+
+      font-weight: bold;
+
+      letter-spacing: 2px;
+
+      text-shadow:
+        0 1px 2px #000;
+
+      cursor: pointer;
+
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.3),
+        0 4px 10px rgba(0,0,0,0.35);
+
+      transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+    }
+
+    .get-button:hover {
+      background:
+        linear-gradient(
+          180deg,
+          #4ba8ff,
+          #1689df
+        );
+
+      transform: translateY(-1px);
+    }
+
+    .get-button:active {
+      transform: translateY(1px);
+    }
+
+
+    /* =========================================
+       BOŞ BÖLÜMLER
+       ========================================= */
+
+    .empty {
+      min-height: 350px;
+    }
+
+
+    /* =========================================
+       SCROLLBAR
+       ========================================= */
+
     ::-webkit-scrollbar {
       width: 10px;
     }
@@ -229,9 +409,14 @@
     }
 
     ::-webkit-scrollbar-thumb {
-      background: linear-gradient(#555, #222);
+      background:
+        linear-gradient(
+          #555,
+          #222
+        );
 
       border-radius: 5px;
+
       border: 1px solid #666;
     }
 
@@ -239,14 +424,27 @@
       background: #777;
     }
 
-    /* Telefon */
+
+    /* =========================================
+       TABLET
+       ========================================= */
+
     @media (max-width: 900px) {
+
       .four-sections {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+          repeat(2, 1fr);
       }
+
     }
 
+
+    /* =========================================
+       TELEFON
+       ========================================= */
+
     @media (max-width: 700px) {
+
       .screen {
         padding: 50px 40px;
       }
@@ -274,24 +472,44 @@
       .four-sections {
         grid-template-columns: 1fr;
       }
+
+      .small-section {
+        min-height: 350px;
+      }
+
     }
+
   </style>
 </head>
 
+
 <body>
 
-  <!-- Kırmızı Kenar Işıkları -->
+
+  <!-- =========================================
+       KIRMIZI KENARLAR
+       ========================================= -->
+
   <div class="red-line-left"></div>
   <div class="red-line-right"></div>
 
 
-  <!-- Ana Ekran -->
+
+  <!-- =========================================
+       ANA EKRAN
+       ========================================= -->
+
   <main class="screen">
 
-    <!-- START HERE -->
+
+    <!-- =========================================
+         START HERE
+         ========================================= -->
+
     <section class="panel">
 
       <h1>
+
         <a
           href="#"
           class="blue-link"
@@ -299,12 +517,17 @@
         >
           Start Here
         </a>
+
       </h1>
+
 
       <div class="metal-line"></div>
 
+
       <p>
+
         Start Your Business Now In
+
         <a
           href="#"
           class="blue-link"
@@ -312,7 +535,9 @@
         >
           Here
         </a>
+
         More Info
+
         <a
           href="#"
           class="blue-link"
@@ -320,41 +545,119 @@
         >
           Here
         </a>
+
       </p>
 
     </section>
 
 
-    <!-- 4 BÖLÜM -->
+
+    <!-- =========================================
+         4 KART
+         ========================================= -->
+
     <section class="four-sections">
 
-      <!-- 1. BÖLÜM -->
+
+      <!-- =======================================
+           1. EGGS
+           ======================================= -->
+
       <div class="small-section first">
 
         <div class="eggs">
           Eggs
         </div>
 
+
+        <!-- SEN png1.png KOYACAKSIN -->
+
+        <img
+          src="png1.png"
+          alt="PNG 1"
+          class="egg-image"
+        >
+
       </div>
 
 
-      <!-- 2. BÖLÜM -->
-      <div class="small-section empty">
+
+      <!-- =======================================
+           2. PNG 2
+           ======================================= -->
+
+      <div class="small-section">
+
+        <img
+          src="png2.png"
+          alt="PNG 2"
+          class="item-image"
+        >
+
+
+        <button
+          class="get-button"
+          onclick="return false;"
+        >
+          GET
+        </button>
+
       </div>
 
 
-      <!-- 3. BÖLÜM -->
-      <div class="small-section empty">
+
+      <!-- =======================================
+           3. PNG 3
+           ======================================= -->
+
+      <div class="small-section">
+
+        <img
+          src="png3.png"
+          alt="PNG 3"
+          class="item-image"
+        >
+
+
+        <button
+          class="get-button"
+          onclick="return false;"
+        >
+          GET
+        </button>
+
       </div>
 
 
-      <!-- 4. BÖLÜM -->
-      <div class="small-section empty">
+
+      <!-- =======================================
+           4. PNG 4
+           ======================================= -->
+
+      <div class="small-section">
+
+        <img
+          src="png4.png"
+          alt="PNG 4"
+          class="item-image"
+        >
+
+
+        <button
+          class="get-button"
+          onclick="return false;"
+        >
+          GET
+        </button>
+
       </div>
+
 
     </section>
 
+
   </main>
+
 
 </body>
 </html>
