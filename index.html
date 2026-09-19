@@ -21,12 +21,13 @@
       overflow-x: hidden;
     }
 
-    /* Metalik yüzey */
+    /* Ana ekran */
     .screen {
       position: relative;
       min-height: 180vh;
       width: 100%;
       padding: 80px 70px;
+
       background:
         linear-gradient(
           135deg,
@@ -38,9 +39,9 @@
         linear-gradient(#292d31, #111315);
     }
 
-    /* Sol kırmızı ışık */
+    /* Sol Kırmızı Işık */
     .red-line-left,
-    /* Sağ kırmızı ışık */
+    /* Sağ Kırmızı Işık */
     .red-line-right {
       position: fixed;
       top: 0;
@@ -65,7 +66,7 @@
       right: 22px;
     }
 
-    /* Metal panel */
+    /* Metal Panel */
     .panel {
       max-width: 1100px;
       min-height: 500px;
@@ -91,21 +92,39 @@
         0 20px 50px rgba(0,0,0,0.5);
     }
 
+    /* Başlık */
     h1 {
       font-size: 42px;
       letter-spacing: 4px;
       color: #eee;
+
       text-shadow:
         0 2px 4px #000;
     }
 
+    /* Mavi Tıklanabilir Yazılar */
+    .blue-link {
+      color: #2997ff;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s ease, text-shadow 0.2s ease;
+    }
+
+    .blue-link:hover {
+      color: #66b5ff;
+      text-shadow:
+        0 0 8px rgba(41, 151, 255, 0.7);
+    }
+
+    /* Küçük Açıklama */
     p {
       margin-top: 20px;
       color: #aaa;
       line-height: 1.7;
+      font-size: 16px;
     }
 
-    /* Metalik dekoratif çizgiler */
+    /* Metalik Çizgi */
     .metal-line {
       height: 2px;
       margin-top: 30px;
@@ -141,6 +160,7 @@
       background: #777;
     }
 
+    /* Telefon */
     @media (max-width: 700px) {
       .screen {
         padding: 50px 40px;
@@ -161,49 +181,73 @@
       h1 {
         font-size: 28px;
       }
+
+      p {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 
 <body>
 
+  <!-- Kırmızı Kenar Işıkları -->
   <div class="red-line-left"></div>
   <div class="red-line-right"></div>
 
+  <!-- Ana Ekran -->
   <main class="screen">
 
+    <!-- Birinci Panel -->
     <section class="panel">
-      <h1>METAL SYSTEM</h1>
+
+      <h1>
+        <a href="#" class="blue-link" onclick="return false;">
+          Start Here
+        </a>
+      </h1>
 
       <div class="metal-line"></div>
 
       <p>
-        Buraya projenin ilk içeriğini ekleyebiliriz.
-        Sayfa aşağı doğru kaydırılabilir ve metalik
-        arka plan korunur.
+        Start Your Business Now In
+        <a href="#" class="blue-link" onclick="return false;">
+          Here
+        </a>
+        More Info
+        <a href="#" class="blue-link" onclick="return false;">
+          Here
+        </a>
       </p>
+
     </section>
 
+
+    <!-- İkinci Panel -->
     <section class="panel">
-      <h1>SECTION 02</h1>
+
+      <h1>Section 02</h1>
 
       <div class="metal-line"></div>
 
       <p>
-        İkinci bölüm. Daha sonra buraya butonlar,
-        animasyonlar veya başka arayüz parçaları
-        ekleyebiliriz.
+        Second Section. More Content Can Be Added Here Later.
       </p>
+
     </section>
 
+
+    <!-- Üçüncü Panel -->
     <section class="panel">
-      <h1>SECTION 03</h1>
+
+      <h1>Section 03</h1>
 
       <div class="metal-line"></div>
 
       <p>
-        Sayfanın devamındaki içerik.
+        More Information And Features Can Be Added Here.
       </p>
+
     </section>
 
   </main>
