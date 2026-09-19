@@ -26,14 +26,10 @@
 
       color: white;
       font-family: Arial, sans-serif;
-
       overflow-x: hidden;
     }
 
-    /* =========================================
-       ANA EKRAN
-       ========================================= */
-
+    /* ANA EKRAN */
     .screen {
       position: relative;
 
@@ -50,17 +46,10 @@
           rgba(255,255,255,0.025) 50%,
           transparent 80%
         ),
-        linear-gradient(
-          #292d31,
-          #111315
-        );
+        linear-gradient(#292d31, #111315);
     }
 
-
-    /* =========================================
-       KIRMIZI KENAR IŞIKLARI
-       ========================================= */
-
+    /* KIRMIZI KENAR IŞIKLARI */
     .red-line-left,
     .red-line-right {
       position: fixed;
@@ -89,11 +78,7 @@
       right: 22px;
     }
 
-
-    /* =========================================
-       ANA METAL PANEL
-       ========================================= */
-
+    /* ANA METAL PANEL */
     .panel {
       max-width: 1100px;
 
@@ -122,11 +107,7 @@
         0 20px 50px rgba(0,0,0,0.5);
     }
 
-
-    /* =========================================
-       BAŞLIK
-       ========================================= */
-
+    /* BAŞLIK */
     h1 {
       font-size: 42px;
 
@@ -138,11 +119,7 @@
         0 2px 4px #000;
     }
 
-
-    /* =========================================
-       MAVİ YAZILAR
-       ========================================= */
-
+    /* MAVİ YAZILAR */
     .blue-link {
       color: #2997ff;
 
@@ -162,11 +139,7 @@
         0 0 8px rgba(41,151,255,0.7);
     }
 
-
-    /* =========================================
-       AÇIKLAMA
-       ========================================= */
-
+    /* AÇIKLAMA */
     p {
       margin-top: 20px;
 
@@ -177,11 +150,7 @@
       font-size: 16px;
     }
 
-
-    /* =========================================
-       METAL ÇİZGİ
-       ========================================= */
-
+    /* METAL ÇİZGİ */
     .metal-line {
       height: 2px;
 
@@ -200,11 +169,7 @@
       opacity: 0.35;
     }
 
-
-    /* =========================================
-       4 BÖLÜM
-       ========================================= */
-
+    /* 4 BÖLÜM */
     .four-sections {
       max-width: 1100px;
 
@@ -212,19 +177,14 @@
 
       display: grid;
 
-      grid-template-columns:
-        repeat(4, 1fr);
+      grid-template-columns: repeat(4, 1fr);
 
       gap: 20px;
 
-      align-items: start;
+      align-items: stretch;
     }
 
-
-    /* =========================================
-       KART
-       ========================================= */
-
+    /* KART */
     .small-section {
       min-height: 350px;
 
@@ -267,36 +227,27 @@
       transform: translateY(-3px);
     }
 
+    /* KART BAŞLIKLARI */
+    .egg-title {
+      width: 100%;
 
-    /* =========================================
-       EGGS BÖLÜMÜ
-       ========================================= */
-
-    .small-section.first {
-      min-height: 250px;
-
-      align-items: flex-start;
-
-      padding: 30px;
-    }
-
-
-    .eggs {
-      font-size: 28px;
-
-      letter-spacing: 3px;
+      margin-bottom: 15px;
 
       color: #eee;
+
+      font-size: 22px;
+
+      font-weight: bold;
+
+      letter-spacing: 2px;
+
+      text-align: left;
 
       text-shadow:
         0 2px 4px #000;
     }
 
-
-    /* =========================================
-       RESİM ALANI
-       ========================================= */
-
+    /* RESİMLER */
     .item-image {
       width: 100%;
 
@@ -309,28 +260,9 @@
       margin-bottom: 18px;
 
       border-radius: 5px;
-
-      /* Resim yoksa kırık ikon yerine alan yine düzgün kalır */
     }
 
-
-    /* Eggs resminin boyutu */
-
-    .egg-image {
-      width: 100%;
-
-      height: 150px;
-
-      object-fit: contain;
-
-      margin-top: 20px;
-    }
-
-
-    /* =========================================
-       GET BUTONU
-       ========================================= */
-
+    /* GET BUTONU */
     .get-button {
       width: 100%;
 
@@ -386,20 +318,7 @@
       transform: translateY(1px);
     }
 
-
-    /* =========================================
-       BOŞ BÖLÜMLER
-       ========================================= */
-
-    .empty {
-      min-height: 350px;
-    }
-
-
-    /* =========================================
-       SCROLLBAR
-       ========================================= */
-
+    /* SCROLLBAR */
     ::-webkit-scrollbar {
       width: 10px;
     }
@@ -424,25 +343,16 @@
       background: #777;
     }
 
-
-    /* =========================================
-       TABLET
-       ========================================= */
-
+    /* TABLET */
     @media (max-width: 900px) {
 
       .four-sections {
-        grid-template-columns:
-          repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
 
     }
 
-
-    /* =========================================
-       TELEFON
-       ========================================= */
-
+    /* TELEFON */
     @media (max-width: 700px) {
 
       .screen {
@@ -478,38 +388,24 @@
       }
 
     }
-
   </style>
 </head>
 
-
 <body>
 
-
-  <!-- =========================================
-       KIRMIZI KENARLAR
-       ========================================= -->
-
+  <!-- KIRMIZI KENAR IŞIKLARI -->
   <div class="red-line-left"></div>
   <div class="red-line-right"></div>
 
 
-
-  <!-- =========================================
-       ANA EKRAN
-       ========================================= -->
-
+  <!-- ANA EKRAN -->
   <main class="screen">
 
 
-    <!-- =========================================
-         START HERE
-         ========================================= -->
-
+    <!-- START HERE -->
     <section class="panel">
 
       <h1>
-
         <a
           href="#"
           class="blue-link"
@@ -517,15 +413,11 @@
         >
           Start Here
         </a>
-
       </h1>
-
 
       <div class="metal-line"></div>
 
-
       <p>
-
         Start Your Business Now In
 
         <a
@@ -545,58 +437,55 @@
         >
           Here
         </a>
-
       </p>
 
     </section>
 
 
-
-    <!-- =========================================
-         4 KART
-         ========================================= -->
-
+    <!-- 4 EGG BÖLÜMÜ -->
     <section class="four-sections">
 
 
-      <!-- =======================================
-           1. EGGS
-           ======================================= -->
+      <!-- 1. EGG -->
+      <div class="small-section">
 
-      <div class="small-section first">
-
-        <div class="eggs">
-          Eggs
+        <div class="egg-title">
+          EGG
         </div>
-
-
-        <!-- SEN png1.png KOYACAKSIN -->
 
         <img
           src="png1.png"
-          alt="PNG 1"
-          class="egg-image"
+          alt="EGG"
+          class="item-image"
         >
+
+        <button
+          class="get-button"
+          type="button"
+          onclick="return false;"
+        >
+          GET
+        </button>
 
       </div>
 
 
-
-      <!-- =======================================
-           2. PNG 2
-           ======================================= -->
-
+      <!-- 2. MEATMAN EGG -->
       <div class="small-section">
+
+        <div class="egg-title">
+          MEATMAN EGG
+        </div>
 
         <img
           src="png2.png"
-          alt="PNG 2"
+          alt="MEATMAN EGG"
           class="item-image"
         >
 
-
         <button
           class="get-button"
+          type="button"
           onclick="return false;"
         >
           GET
@@ -605,22 +494,22 @@
       </div>
 
 
-
-      <!-- =======================================
-           3. PNG 3
-           ======================================= -->
-
+      <!-- 3. GOOGOO EGG -->
       <div class="small-section">
+
+        <div class="egg-title">
+          GOOGOO EGG
+        </div>
 
         <img
           src="png3.png"
-          alt="PNG 3"
+          alt="GOOGOO EGG"
           class="item-image"
         >
 
-
         <button
           class="get-button"
+          type="button"
           onclick="return false;"
         >
           GET
@@ -629,22 +518,22 @@
       </div>
 
 
-
-      <!-- =======================================
-           4. PNG 4
-           ======================================= -->
-
+      <!-- 4. SECRET EGG -->
       <div class="small-section">
+
+        <div class="egg-title">
+          SECRET EGG
+        </div>
 
         <img
           src="png4.png"
-          alt="PNG 4"
+          alt="SECRET EGG"
           class="item-image"
         >
 
-
         <button
           class="get-button"
+          type="button"
           onclick="return false;"
         >
           GET
@@ -655,9 +544,7 @@
 
     </section>
 
-
   </main>
-
 
 </body>
 </html>
