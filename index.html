@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Metal UI</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at center, #30343a 0%, #17191c 55%, #0b0c0e 100%);
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Metalik yüzey */
+    .screen {
+      position: relative;
+      min-height: 180vh;
+      width: 100%;
+      padding: 80px 70px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,0.05) 0%,
+          transparent 20%,
+          rgba(255,255,255,0.025) 50%,
+          transparent 80%
+        ),
+        linear-gradient(#292d31, #111315);
+    }
+
+    /* Sol kırmızı ışık */
+    .red-line-left,
+    /* Sağ kırmızı ışık */
+    .red-line-right {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      z-index: 10;
+
+      background: #ff2020;
+
+      box-shadow:
+        0 0 5px #ff0000,
+        0 0 15px #ff0000,
+        0 0 30px rgba(255, 0, 0, 0.8),
+        0 0 60px rgba(255, 0, 0, 0.35);
+    }
+
+    .red-line-left {
+      left: 22px;
+    }
+
+    .red-line-right {
+      right: 22px;
+    }
+
+    /* Metal panel */
+    .panel {
+      max-width: 1100px;
+      min-height: 500px;
+      margin: 0 auto 100px;
+
+      padding: 40px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #4a4e52,
+          #25282b 35%,
+          #151719 70%,
+          #363a3e
+        );
+
+      border: 1px solid #555a5f;
+      border-radius: 8px;
+
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        inset 0 -1px 0 rgba(0,0,0,0.8),
+        0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    h1 {
+      font-size: 42px;
+      letter-spacing: 4px;
+      color: #eee;
+      text-shadow:
+        0 2px 4px #000;
+    }
+
+    p {
+      margin-top: 20px;
+      color: #aaa;
+      line-height: 1.7;
+    }
+
+    /* Metalik dekoratif çizgiler */
+    .metal-line {
+      height: 2px;
+      margin-top: 30px;
+
+      background: linear-gradient(
+        90deg,
+        transparent,
+        #777,
+        #ddd,
+        #777,
+        transparent
+      );
+
+      opacity: 0.35;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0b0c0e;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(#555, #222);
+      border-radius: 5px;
+      border: 1px solid #666;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #777;
+    }
+
+    @media (max-width: 700px) {
+      .screen {
+        padding: 50px 40px;
+      }
+
+      .red-line-left {
+        left: 10px;
+      }
+
+      .red-line-right {
+        right: 10px;
+      }
+
+      .panel {
+        padding: 25px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="red-line-left"></div>
+  <div class="red-line-right"></div>
+
+  <main class="screen">
+
+    <section class="panel">
+      <h1>METAL SYSTEM</h1>
+
+      <div class="metal-line"></div>
+
+      <p>
+        Buraya projenin ilk içeriğini ekleyebiliriz.
+        Sayfa aşağı doğru kaydırılabilir ve metalik
+        arka plan korunur.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h1>SECTION 02</h1>
+
+      <div class="metal-line"></div>
+
+      <p>
+        İkinci bölüm. Daha sonra buraya butonlar,
+        animasyonlar veya başka arayüz parçaları
+        ekleyebiliriz.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h1>SECTION 03</h1>
+
+      <div class="metal-line"></div>
+
+      <p>
+        Sayfanın devamındaki içerik.
+      </p>
+    </section>
+
+  </main>
+
+</body>
+</html>
