@@ -228,6 +228,11 @@
       transform: translateY(-3px);
     }
 
+    /* GOOGOO KARTI TIKLANABILIR */
+    .googoo-card {
+      cursor: pointer;
+    }
+
     /* KART BAŞLIKLARI */
     .egg-title {
       width: 100%;
@@ -316,6 +321,114 @@
     }
 
     .get-button:active {
+      transform: translateY(1px);
+    }
+
+    /* GOOGOO BUTONLARI */
+    .googoo-buttons {
+      width: 100%;
+
+      display: flex;
+
+      gap: 10px;
+
+      margin-top: auto;
+    }
+
+    .googoo-button {
+      flex: 1;
+
+      height: 48px;
+
+      border-radius: 5px;
+
+      color: white;
+
+      font-size: 17px;
+
+      font-weight: bold;
+
+      letter-spacing: 1px;
+
+      text-shadow:
+        0 1px 2px #000;
+
+      cursor: pointer;
+
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.3),
+        0 4px 10px rgba(0,0,0,0.35);
+
+      transition:
+        transform 0.15s ease,
+        filter 0.15s ease;
+    }
+
+    /* SARI BUTON */
+    .yellow-button {
+      border: 1px solid #d99d00;
+
+      background:
+        linear-gradient(
+          180deg,
+          #ffd43b,
+          #d99d00
+        );
+    }
+
+    .yellow-button:hover {
+      filter: brightness(1.15);
+
+      transform: translateY(-1px);
+    }
+
+    /* YEŞİL BUTON */
+    .green-button {
+      border: 1px solid #198c45;
+
+      background:
+        linear-gradient(
+          180deg,
+          #35d66b,
+          #168c42
+        );
+    }
+
+    .green-button:hover {
+      filter: brightness(1.15);
+
+      transform: translateY(-1px);
+    }
+
+    /* 30 GOLD KIRMIZI ÇİZGİ */
+    .crossed-gold {
+      position: relative;
+
+      display: inline-block;
+
+      color: white;
+    }
+
+    .crossed-gold::after {
+      content: "";
+
+      position: absolute;
+
+      left: -4px;
+      right: -4px;
+
+      top: 50%;
+
+      height: 3px;
+
+      background: red;
+
+      transform: translateY(-50%) rotate(-3deg);
+
+      pointer-events: none;
+    }
+
+    .googoo-button:active {
       transform: translateY(1px);
     }
 
@@ -421,12 +534,10 @@
       <p>
         Start Your Business Now In
 
-        <!-- 1. HERE NORMAL -->
         Here
 
         More Info
 
-        <!-- 2. HERE TIKLANABİLİR -->
         <a
           href="#"
           class="blue-link"
@@ -492,7 +603,10 @@
 
 
       <!-- 3. GOOGOO EGG -->
-      <div class="small-section">
+      <div
+        class="small-section googoo-card"
+        onclick="openGoogoo()"
+      >
 
         <div class="egg-title">
           GOOGOO EGG
@@ -504,13 +618,29 @@
           class="item-image"
         >
 
-        <button
-          class="get-button"
-          type="button"
-          onclick="return false;"
-        >
-          GET
-        </button>
+        <div class="googoo-buttons">
+
+          <!-- SARI 0.99$ -->
+          <button
+            class="googoo-button yellow-button"
+            type="button"
+            onclick="event.stopPropagation(); return false;"
+          >
+            0.99$
+          </button>
+
+          <!-- YEŞİL 30 GOLD -->
+          <button
+            class="googoo-button green-button"
+            type="button"
+            onclick="event.stopPropagation(); return false;"
+          >
+            <span class="crossed-gold">
+              30 GOLD
+            </span>
+          </button>
+
+        </div>
 
       </div>
 
@@ -540,6 +670,22 @@
 
 
     </section>
+
+  </main>
+
+
+  <script>
+    function openGoogoo() {
+      // GOOGOO EGG'ye tıklanınca çalışır.
+      // Şimdilik satın alma veya başka işlem yapmaz.
+      console.log("GOOGOO EGG clicked");
+    }
+  </script>
+
+</body>
+</html>
+
+
 
   </main>
 
