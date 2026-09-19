@@ -15,13 +15,19 @@
     body {
       min-height: 100vh;
       background:
-        radial-gradient(circle at center, #30343a 0%, #17191c 55%, #0b0c0e 100%);
+        radial-gradient(
+          circle at center,
+          #30343a 0%,
+          #17191c 55%,
+          #0b0c0e 100%
+        );
+
       color: white;
       font-family: Arial, sans-serif;
       overflow-x: hidden;
     }
 
-    /* Ana ekran */
+    /* Ana Ekran */
     .screen {
       position: relative;
       min-height: 180vh;
@@ -66,7 +72,7 @@
       right: 22px;
     }
 
-    /* Metal Panel */
+    /* Ana Metal Panel */
     .panel {
       max-width: 1100px;
       min-height: 500px;
@@ -107,16 +113,20 @@
       color: #2997ff;
       text-decoration: none;
       cursor: pointer;
-      transition: color 0.2s ease, text-shadow 0.2s ease;
+
+      transition:
+        color 0.2s ease,
+        text-shadow 0.2s ease;
     }
 
     .blue-link:hover {
       color: #66b5ff;
+
       text-shadow:
         0 0 8px rgba(41, 151, 255, 0.7);
     }
 
-    /* Küçük Açıklama */
+    /* Açıklama */
     p {
       margin-top: 20px;
       color: #aaa;
@@ -129,16 +139,84 @@
       height: 2px;
       margin-top: 30px;
 
-      background: linear-gradient(
-        90deg,
-        transparent,
-        #777,
-        #ddd,
-        #777,
-        transparent
-      );
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #777,
+          #ddd,
+          #777,
+          transparent
+        );
 
       opacity: 0.35;
+    }
+
+    /* =========================================
+       4 ALT BÖLÜM
+       ========================================= */
+
+    .four-sections {
+      max-width: 1100px;
+      margin: 0 auto 100px;
+
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 20px;
+    }
+
+    /* Her Bölüm */
+    .small-section {
+      min-height: 350px;
+
+      padding: 30px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #4a4e52,
+          #292d30 35%,
+          #151719 70%,
+          #383c40
+        );
+
+      border: 1px solid #555a5f;
+      border-radius: 8px;
+
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        inset 0 -1px 0 rgba(0,0,0,0.8),
+        0 15px 35px rgba(0,0,0,0.45);
+
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .small-section:hover {
+      border-color: #777;
+      transform: translateY(-3px);
+    }
+
+    /* İlk Bölüm Daha Küçük */
+    .small-section.first {
+      min-height: 250px;
+    }
+
+    /* EGGS */
+    .eggs {
+      font-size: 28px;
+      letter-spacing: 3px;
+      color: #eee;
+
+      text-shadow:
+        0 2px 4px #000;
+    }
+
+    /* Boş Bölümlerin İçeriği */
+    .empty {
+      min-height: 1px;
     }
 
     /* Scrollbar */
@@ -152,6 +230,7 @@
 
     ::-webkit-scrollbar-thumb {
       background: linear-gradient(#555, #222);
+
       border-radius: 5px;
       border: 1px solid #666;
     }
@@ -161,6 +240,12 @@
     }
 
     /* Telefon */
+    @media (max-width: 900px) {
+      .four-sections {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 700px) {
       .screen {
         padding: 50px 40px;
@@ -185,6 +270,10 @@
       p {
         font-size: 14px;
       }
+
+      .four-sections {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -195,14 +284,19 @@
   <div class="red-line-left"></div>
   <div class="red-line-right"></div>
 
+
   <!-- Ana Ekran -->
   <main class="screen">
 
-    <!-- Birinci Panel -->
+    <!-- START HERE -->
     <section class="panel">
 
       <h1>
-        <a href="#" class="blue-link" onclick="return false;">
+        <a
+          href="#"
+          class="blue-link"
+          onclick="return false;"
+        >
           Start Here
         </a>
       </h1>
@@ -211,11 +305,19 @@
 
       <p>
         Start Your Business Now In
-        <a href="#" class="blue-link" onclick="return false;">
+        <a
+          href="#"
+          class="blue-link"
+          onclick="return false;"
+        >
           Here
         </a>
         More Info
-        <a href="#" class="blue-link" onclick="return false;">
+        <a
+          href="#"
+          class="blue-link"
+          onclick="return false;"
+        >
           Here
         </a>
       </p>
@@ -223,30 +325,32 @@
     </section>
 
 
-    <!-- İkinci Panel -->
-    <section class="panel">
+    <!-- 4 BÖLÜM -->
+    <section class="four-sections">
 
-      <h1>Section 02</h1>
+      <!-- 1. BÖLÜM -->
+      <div class="small-section first">
 
-      <div class="metal-line"></div>
+        <div class="eggs">
+          Eggs
+        </div>
 
-      <p>
-        Second Section. More Content Can Be Added Here Later.
-      </p>
-
-    </section>
+      </div>
 
 
-    <!-- Üçüncü Panel -->
-    <section class="panel">
+      <!-- 2. BÖLÜM -->
+      <div class="small-section empty">
+      </div>
 
-      <h1>Section 03</h1>
 
-      <div class="metal-line"></div>
+      <!-- 3. BÖLÜM -->
+      <div class="small-section empty">
+      </div>
 
-      <p>
-        More Information And Features Can Be Added Here.
-      </p>
+
+      <!-- 4. BÖLÜM -->
+      <div class="small-section empty">
+      </div>
 
     </section>
 
