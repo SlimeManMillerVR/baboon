@@ -1,769 +1,732 @@
 
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Metal UI</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      min-height: 100vh;
-
-      background:
-        radial-gradient(
-          circle at center,
-          #30343a 0%,
-          #17191c 55%,
-          #0b0c0e 100%
-        );
-
-      color: white;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden;
-    }
-
-    /* ANA EKRAN */
-    .screen {
-      position: relative;
-
-      min-height: 180vh;
-      width: 100%;
-
-      padding: 80px 70px;
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255,255,255,0.05) 0%,
-          transparent 20%,
-          rgba(255,255,255,0.025) 50%,
-          transparent 80%
-        ),
-        linear-gradient(#292d31, #111315);
-    }
-
-    /* KIRMIZI KENAR IŞIKLARI */
-    .red-line-left,
-    .red-line-right {
-      position: fixed;
-
-      top: 0;
-      bottom: 0;
-
-      width: 4px;
-
-      z-index: 10;
-
-      background: #ff2020;
-
-      box-shadow:
-        0 0 5px #ff0000,
-        0 0 15px #ff0000,
-        0 0 30px rgba(255, 0, 0, 0.8),
-        0 0 60px rgba(255, 0, 0, 0.35);
-    }
-
-    .red-line-left {
-      left: 22px;
-    }
-
-    .red-line-right {
-      right: 22px;
-    }
-
-    /* ANA METAL PANEL */
-    .panel {
-      max-width: 1100px;
-
-      min-height: 500px;
-
-      margin: 0 auto 100px;
-
-      padding: 40px;
-
-      background:
-        linear-gradient(
-          145deg,
-          #4a4e52,
-          #25282b 35%,
-          #151719 70%,
-          #363a3e
-        );
-
-      border: 1px solid #555a5f;
-
-      border-radius: 8px;
-
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.12),
-        inset 0 -1px 0 rgba(0,0,0,0.8),
-        0 20px 50px rgba(0,0,0,0.5);
-    }
-
-    /* BAŞLIK */
-    h1 {
-      font-size: 42px;
-
-      letter-spacing: 4px;
-
-      color: #eee;
-
-      text-shadow:
-        0 2px 4px #000;
-    }
-
-    /* MAVİ YAZILAR */
-    .blue-link {
-      color: #2997ff;
-
-      text-decoration: none;
-
-      cursor: pointer;
-
-      transition:
-        color 0.2s ease,
-        text-shadow 0.2s ease;
-    }
-
-    .blue-link:hover {
-      color: #66b5ff;
-
-      text-shadow:
-        0 0 8px rgba(41,151,255,0.7);
-    }
-
-    /* AÇIKLAMA */
-    p {
-      margin-top: 20px;
-
-      color: #aaa;
-
-      line-height: 1.7;
-
-      font-size: 16px;
-    }
-
-    /* METAL ÇİZGİ */
-    .metal-line {
-      height: 2px;
-
-      margin-top: 30px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          #777,
-          #ddd,
-          #777,
-          transparent
-        );
-
-      opacity: 0.35;
-    }
-
-    /* 4 BÖLÜM */
-    .four-sections {
-      max-width: 1100px;
-
-      margin: 0 auto 100px;
-
-      display: grid;
-
-      grid-template-columns: repeat(4, 1fr);
-
-      gap: 20px;
-
-      align-items: stretch;
-    }
-
-    /* KART */
-    .small-section {
-      min-height: 350px;
-
-      padding: 20px;
-
-      position: relative;
-
-      display: flex;
-
-      flex-direction: column;
-
-      align-items: center;
-
-      background:
-        linear-gradient(
-          145deg,
-          #4a4e52,
-          #292d30 35%,
-          #151719 70%,
-          #383c40
-        );
-
-      border: 1px solid #555a5f;
-
-      border-radius: 8px;
-
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.12),
-        inset 0 -1px 0 rgba(0,0,0,0.8),
-        0 15px 35px rgba(0,0,0,0.45);
-
-      transition:
-        transform 0.2s ease,
-        border-color 0.2s ease;
-    }
-
-    .small-section:hover {
-      border-color: #777;
-
-      transform: translateY(-3px);
-    }
-
-    /* KART BAŞLIKLARI */
-    .egg-title {
-      width: 100%;
-
-      margin-bottom: 15px;
-
-      color: #eee;
-
-      font-size: 22px;
-
-      font-weight: bold;
-
-      letter-spacing: 2px;
-
-      text-align: left;
-
-      text-shadow:
-        0 2px 4px #000;
-    }
-
-    /* RESİMLER */
-    .item-image {
-      width: 100%;
-
-      height: 210px;
-
-      object-fit: contain;
-
-      display: block;
-
-      margin-bottom: 18px;
-
-      border-radius: 5px;
-    }
-
-    /* GET BUTONU */
-    .get-button {
-      width: 100%;
-
-      height: 48px;
-
-      margin-top: auto;
-
-      border: 1px solid #1685e5;
-
-      border-radius: 5px;
-
-      background:
-        linear-gradient(
-          180deg,
-          #2997ff,
-          #0878d1
-        );
-
-      color: white;
-
-      font-size: 18px;
-
-      font-weight: bold;
-
-      letter-spacing: 2px;
-
-      text-shadow:
-        0 1px 2px #000;
-
-      cursor: pointer;
-
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.3),
-        0 4px 10px rgba(0,0,0,0.35);
-
-      transition:
-        background 0.15s ease,
-        transform 0.15s ease;
-    }
-
-    .get-button:hover {
-      background:
-        linear-gradient(
-          180deg,
-          #4ba8ff,
-          #1689df
-        );
-
-      transform: translateY(-1px);
-    }
-
-    .get-button:active {
-      transform: translateY(1px);
-    }
-
-    /* GOOGOO SATIN ALMA BUTONLARI */
-    .googoo-buttons {
-      width: 100%;
-
-      display: flex;
-
-      gap: 10px;
-
-      margin-top: auto;
-    }
-
-    .googoo-button {
-      flex: 1;
-
-      height: 48px;
-
-      border-radius: 5px;
-
-      color: white;
-
-      font-size: 17px;
-
-      font-weight: bold;
-
-      cursor: pointer;
-
-      position: relative;
-
-      overflow: visible;
-
-      text-shadow:
-        0 1px 2px #000;
-    }
-
-    /* 0.99$ */
-    .yellow-button {
-      border: 1px solid #e4bd00;
-
-      background:
-        linear-gradient(
-          180deg,
-          #ffe34d,
-          #d6a900
-        );
-
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.3),
-        0 4px 10px rgba(0,0,0,0.35);
-    }
-
-    /* 30 GOLD */
-    .green-button {
-      border: 1px solid #159d36;
-
-      background:
-        linear-gradient(
-          180deg,
-          #35d95b,
-          #159a32
-        );
-
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.3),
-        0 4px 10px rgba(0,0,0,0.35);
-    }
-
-    /* 30 GOLD YAZISINDA KIRMIZI ÇİZGİ */
-    .crossed-gold {
-      position: relative;
-
-      display: inline-block;
-    }
-
-    .crossed-gold::after {
-      content: "";
-
-      position: absolute;
-
-      left: -5px;
-      right: -5px;
-
-      top: 50%;
-
-      height: 3px;
-
-      background: #ff2020;
-
-      transform:
-        translateY(-50%)
-        rotate(-3deg);
-
-      pointer-events: none;
-
-      box-shadow:
-        0 0 3px rgba(255,0,0,0.5);
-    }
-
-    /* YEŞİL BUTONUN SAĞ ÜSTÜNDEKİ 10 */
-    .gold-number {
-      position: absolute;
-
-      top: -9px;
-      right: -7px;
-
-      color: white;
-
-      font-size: 13px;
-
-      font-weight: bold;
-
-      letter-spacing: 0;
-
-      text-shadow:
-        0 0 3px white,
-        0 0 7px #00bfff,
-        0 0 12px #00bfff;
-
-      animation: goldNumberGlow 1.4s ease-in-out infinite alternate;
-
-      z-index: 20;
-    }
-
-    @keyframes goldNumberGlow {
-      from {
-        opacity: 0.75;
-
-        text-shadow:
-          0 0 3px white,
-          0 0 6px #00bfff,
-          0 0 10px #00bfff;
-      }
-
-      to {
-        opacity: 1;
-
-        text-shadow:
-          0 0 4px white,
-          0 0 9px #00bfff,
-          0 0 16px #00bfff;
-      }
-    }
-
-    /* SCROLLBAR */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #0b0c0e;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background:
-        linear-gradient(
-          #555,
-          #222
-        );
-
-      border-radius: 5px;
-
-      border: 1px solid #666;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: #777;
-    }
-
-    /* TABLET */
-    @media (max-width: 900px) {
-
-      .four-sections {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-    }
-
-    /* TELEFON */
-    @media (max-width: 700px) {
-
-      .screen {
-        padding: 50px 40px;
-      }
-
-      .red-line-left {
-        left: 10px;
-      }
-
-      .red-line-right {
-        right: 10px;
-      }
-
-      .panel {
-        padding: 25px;
-      }
-
-      h1 {
-        font-size: 28px;
-      }
-
-      p {
-        font-size: 14px;
-      }
-
-      .four-sections {
-        grid-template-columns: 1fr;
-      }
-
-      .small-section {
-        min-height: 350px;
-      }
-
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- KIRMIZI KENAR IŞIKLARI -->
-  <div class="red-line-left"></div>
-  <div class="red-line-right"></div>
-
-
-  <!-- ANA EKRAN -->
-  <main class="screen">
-
-
-    <!-- START HERE -->
-    <section class="panel">
-
-      <h1>
-        <a
-          href="#"
-          class="blue-link"
-          onclick="return false;"
-        >
-          Start Here
-        </a>
-      </h1>
-
-      <div class="metal-line"></div>
-
-      <p>
-        Start Your Business Now In
-
-        <a
-          href="#"
-          class="blue-link"
-          onclick="return false;"
-        >
-          Here
-        </a>
-
-        More Info
-
-        <a
-          href="#"
-          class="blue-link"
-          onclick="return false;"
-        >
-          Here
-        </a>
-      </p>
-
-    </section>
-
-
-    <!-- 4 EGG BÖLÜMÜ -->
-    <section class="four-sections">
-
-
-      <!-- 1. EGG -->
-      <div class="small-section">
-
-        <div class="egg-title">
-          EGG
-        </div>
-
-        <img
-          src="png1.png"
-          alt="EGG"
-          class="item-image"
-        >
-
-        <button
-          class="get-button"
-          type="button"
-          onclick="return false;"
-        >
-          GET
-        </button>
-
-      </div>
-
-
-      <!-- 2. MEATMAN EGG -->
-      <div class="small-section">
-
-        <div class="egg-title">
-          MEATMAN EGG
-        </div>
-
-        <img
-          src="png2.png"
-          alt="MEATMAN EGG"
-          class="item-image"
-        >
-
-        <button
-          class="get-button"
-          type="button"
-          onclick="return false;"
-        >
-          GET
-        </button>
-
-      </div>
-
-
-      <!-- 3. GOOGOO EGG -->
-      <div class="small-section">
-
-        <div class="egg-title">
-          GOOGOO EGG
-        </div>
-
-        <img
-          src="png3.png"
-          alt="GOOGOO EGG"
-          class="item-image"
-        >
-
-        <!-- NORMAL GET -->
-        <button
-          id="googooGet"
-          class="get-button"
-          type="button"
-          onclick="showGoogooOptions(event)"
-        >
-          GET
-        </button>
-
-
-        <!-- GET'E BASINCA ÇIKACAK BUTONLAR -->
-        <div
-          id="googooButtons"
-          class="googoo-buttons"
-          style="display: none;"
-        >
-
-          <!-- 0.99$ -->
-          <button
-            class="googoo-button yellow-button"
-            type="button"
-            onclick="return false;"
-          >
-            0.99$
-          </button>
-
-
-          <!-- 30 GOLD -->
-          <button
-            class="googoo-button green-button"
-            type="button"
-            onclick="return false;"
-          >
-
-            <span class="crossed-gold">
-              30 GOLD
-            </span>
-
-            <!-- SAĞ ÜSTTE PARLAYAN 10 -->
-            <span class="gold-number">
-              10
-            </span>
-
-          </button>
-
-        </div>
-
-      </div>
-
-
-      <!-- 4. SECRET EGG -->
-      <div class="small-section">
-
-        <div class="egg-title">
-          SECRET EGG
-        </div>
-
-        <img
-          src="png4.png"
-          alt="SECRET EGG"
-          class="item-image"
-        >
-
-        <button
-          class="get-button"
-          type="button"
-          onclick="return false;"
-        >
-          GET
-        </button>
-
-      </div>
-
-
-    </section>
-
-  </main>
-
-
-  <script>
-
-    function showGoogooOptions(event) {
-
-      event.stopPropagation();
-
-      const getButton =
-        document.getElementById("googooGet");
-
-      const buttons =
-        document.getElementById("googooButtons");
-
-
-      /* GET GİDER */
-      getButton.style.display = "none";
-
-
-      /* 0.99$ VE 30 GOLD GELİR */
-      buttons.style.display = "flex";
-
-
-      /* 15 SANİYE SONRA TEKRAR GET */
-      setTimeout(function() {
-
-        buttons.style.display = "none";
-
-        getButton.style.display = "block";
-
-      }, 15000);
-
-    }
-
-  </script>
-
-</body>
+<!DOCTYPE html> 
+<html lang="tr"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+ 
+  <title>Metal UI</title> 
+ 
+  <style> 
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    } 
+ 
+    body { 
+      min-height: 100vh; 
+ 
+      background: 
+        radial-gradient( 
+          circle at center, 
+          #30343a 0%, 
+          #17191c 55%, 
+          #0b0c0e 100% 
+        ); 
+ 
+      color: white; 
+      font-family: Arial, sans-serif; 
+      overflow-x: hidden; 
+    } 
+ 
+    /* ANA EKRAN */ 
+    .screen { 
+      position: relative; 
+ 
+      min-height: 180vh; 
+      width: 100%; 
+ 
+      padding: 80px 70px; 
+ 
+      background: 
+        linear-gradient( 
+          135deg, 
+          rgba(255,255,255,0.05) 0%, 
+          transparent 20%, 
+          rgba(255,255,255,0.025) 50%, 
+          transparent 80% 
+        ), 
+        linear-gradient(#292d31, #111315); 
+    } 
+ 
+    /* KIRMIZI KENAR IŞIKLARI */ 
+    .red-line-left, 
+    .red-line-right { 
+      position: fixed; 
+ 
+      top: 0; 
+      bottom: 0; 
+ 
+      width: 4px; 
+ 
+      z-index: 10; 
+ 
+      background: #ff2020; 
+ 
+      box-shadow: 
+        0 0 5px #ff0000, 
+        0 0 15px #ff0000, 
+        0 0 30px rgba(255, 0, 0, 0.8), 
+        0 0 60px rgba(255, 0, 0, 0.35); 
+    } 
+ 
+    .red-line-left { 
+      left: 22px; 
+    } 
+ 
+    .red-line-right { 
+      right: 22px; 
+    } 
+ 
+    /* ANA METAL PANEL */ 
+    .panel { 
+      max-width: 1100px; 
+ 
+      min-height: 500px; 
+ 
+      margin: 0 auto 100px; 
+ 
+      padding: 40px; 
+ 
+      background: 
+        linear-gradient( 
+          145deg, 
+          #4a4e52, 
+          #25282b 35%, 
+          #151719 70%, 
+          #363a3e 
+        ); 
+ 
+      border: 1px solid #555a5f; 
+ 
+      border-radius: 8px; 
+ 
+      box-shadow: 
+        inset 0 1px 0 rgba(255,255,255,0.12), 
+        inset 0 -1px 0 rgba(0,0,0,0.8), 
+        0 20px 50px rgba(0,0,0,0.5); 
+    } 
+ 
+    /* BAŞLIK */ 
+    h1 { 
+      font-size: 42px; 
+ 
+      letter-spacing: 4px; 
+ 
+      color: #eee; 
+ 
+      text-shadow: 
+        0 2px 4px #000; 
+    } 
+ 
+    /* MAVİ YAZILAR */ 
+    .blue-link { 
+      color: #2997ff; 
+ 
+      text-decoration: none; 
+ 
+      cursor: pointer; 
+ 
+      transition: 
+        color 0.2s ease, 
+        text-shadow 0.2s ease; 
+    } 
+ 
+    .blue-link:hover { 
+      color: #66b5ff; 
+ 
+      text-shadow: 
+        0 0 8px rgba(41,151,255,0.7); 
+    } 
+ 
+    /* AÇIKLAMA */ 
+    p { 
+      margin-top: 20px; 
+ 
+      color: #aaa; 
+ 
+      line-height: 1.7; 
+ 
+      font-size: 16px; 
+    } 
+ 
+    /* METAL ÇİZGİ */ 
+    .metal-line { 
+      height: 2px; 
+ 
+      margin-top: 30px; 
+ 
+      background: 
+        linear-gradient( 
+          90deg, 
+          transparent, 
+          #777, 
+          #ddd, 
+          #777, 
+          transparent 
+        ); 
+ 
+      opacity: 0.35; 
+    } 
+ 
+    /* 4 BÖLÜM */ 
+    .four-sections { 
+      max-width: 1100px; 
+ 
+      margin: 0 auto 100px; 
+ 
+      display: grid; 
+ 
+      grid-template-columns: repeat(4, 1fr); 
+ 
+      gap: 20px; 
+ 
+      align-items: stretch; 
+    } 
+ 
+    /* KART */ 
+    .small-section { 
+      min-height: 350px; 
+ 
+      padding: 20px; 
+ 
+      position: relative; 
+ 
+      display: flex; 
+ 
+      flex-direction: column; 
+ 
+      align-items: center; 
+ 
+      background: 
+        linear-gradient( 
+          145deg, 
+          #4a4e52, 
+          #292d30 35%, 
+          #151719 70%, 
+          #383c40 
+        ); 
+ 
+      border: 1px solid #555a5f; 
+ 
+      border-radius: 8px; 
+ 
+      box-shadow: 
+        inset 0 1px 0 rgba(255,255,255,0.12), 
+        inset 0 -1px 0 rgba(0,0,0,0.8), 
+        0 15px 35px rgba(0,0,0,0.45); 
+ 
+      transition: 
+        transform 0.2s ease, 
+        border-color 0.2s ease; 
+    } 
+ 
+    .small-section:hover { 
+      border-color: #777; 
+ 
+      transform: translateY(-3px); 
+    } 
+ 
+    /* KART BAŞLIKLARI */ 
+    .egg-title { 
+      width: 100%; 
+ 
+      margin-bottom: 15px; 
+ 
+      color: #eee; 
+ 
+      font-size: 22px; 
+ 
+      font-weight: bold; 
+ 
+      letter-spacing: 2px; 
+ 
+      text-align: left; 
+ 
+      text-shadow: 
+        0 2px 4px #000; 
+    } 
+ 
+    /* RESİMLER */ 
+    .item-image { 
+      width: 100%; 
+ 
+      height: 210px; 
+ 
+      object-fit: contain; 
+ 
+      display: block; 
+ 
+      margin-bottom: 18px; 
+ 
+      border-radius: 5px; 
+    } 
+ 
+    /* GET BUTONU */ 
+    .get-button { 
+      width: 100%; 
+ 
+      height: 48px; 
+ 
+      margin-top: auto; 
+ 
+      border: 1px solid #1685e5; 
+ 
+      border-radius: 5px; 
+ 
+      background: 
+        linear-gradient( 
+          180deg, 
+          #2997ff, 
+          #0878d1 
+        ); 
+ 
+      color: white; 
+ 
+      font-size: 18px; 
+ 
+      font-weight: bold; 
+ 
+      letter-spacing: 2px; 
+ 
+      text-shadow: 
+        0 1px 2px #000; 
+ 
+      cursor: pointer; 
+ 
+      box-shadow: 
+        inset 0 1px 0 rgba(255,255,255,0.3), 
+        0 4px 10px rgba(0,0,0,0.35); 
+ 
+      transition: 
+        background 0.15s ease, 
+        transform 0.15s ease; 
+    } 
+ 
+    .get-button:hover { 
+      background: 
+        linear-gradient( 
+          180deg, 
+          #4ba8ff, 
+          #1689df 
+        ); 
+ 
+      transform: translateY(-1px); 
+    } 
+ 
+    .get-button:active { 
+      transform: translateY(1px); 
+    } 
+ 
+    /* GOOGOO BUTONLARI */ 
+    .googoo-buttons { 
+      width: 100%; 
+      display: flex; 
+      gap: 10px; 
+      margin-top: auto; 
+    } 
+ 
+    .googoo-button { 
+      flex: 1; 
+      height: 48px; 
+ 
+      border-radius: 5px; 
+      color: white; 
+ 
+      font-size: 17px; 
+      font-weight: bold; 
+ 
+      cursor: pointer; 
+      position: relative; 
+      overflow: visible; 
+ 
+      text-shadow: 0 1px 2px #000; 
+    } 
+ 
+    /* SARI BUTON */ 
+    .yellow-button { 
+      border: 1px solid #e0b900; 
+ 
+      background: 
+        linear-gradient( 
+          180deg, 
+          #f5d526, 
+          #c99e00 
+        ); 
+ 
+      box-shadow: 
+        inset 0 1px 0 rgba(255,255,255,0.3), 
+        0 4px 10px rgba(0,0,0,0.35); 
+    } 
+ 
+    /* YEŞİL BUTON */ 
+    .green-button { 
+      border: 1px solid #159b36; 
+ 
+      background: 
+        linear-gradient( 
+          180deg, 
+          #28c94b, 
+          #138d2e 
+        ); 
+ 
+      box-shadow: 
+        inset 0 1px 0 rgba(255,255,255,0.3), 
+        0 4px 10px rgba(0,0,0,0.35); 
+    } 
+ 
+    /* 30 GOLD KIRMIZI ÇİZGİ */ 
+    .crossed-gold { 
+      position: relative; 
+      display: inline-block; 
+    } 
+ 
+    .crossed-gold::after { 
+      content: ""; 
+ 
+      position: absolute; 
+      left: -5px; 
+      right: -5px; 
+      top: 50%; 
+ 
+      height: 3px; 
+      background: red; 
+ 
+      transform: translateY(-50%) rotate(-3deg); 
+ 
+      pointer-events: none; 
+    } 
+ 
+    /* YEŞİL BUTONUN SAĞ ÜSTÜNDEKİ 10 */ 
+    .gold-number { 
+      position: absolute; 
+ 
+      top: -9px; 
+      right: -7px; 
+ 
+      color: white; 
+ 
+      font-size: 13px; 
+      font-weight: bold; 
+      letter-spacing: 0; 
+ 
+      text-shadow: 
+        0 0 3px white, 
+        0 0 7px #00bfff, 
+        0 0 12px #00bfff; 
+ 
+      animation: goldGlow 1.4s ease-in-out infinite alternate; 
+ 
+      z-index: 20; 
+    } 
+ 
+    @keyframes goldGlow { 
+      from { 
+        opacity: 0.7; 
+ 
+        text-shadow: 
+          0 0 3px white, 
+          0 0 6px #00bfff; 
+      } 
+ 
+      to { 
+        opacity: 1; 
+ 
+        text-shadow: 
+          0 0 4px white, 
+          0 0 9px #00bfff, 
+          0 0 15px #00bfff; 
+      } 
+    } 
+ 
+    /* SCROLLBAR */ 
+    ::-webkit-scrollbar { 
+      width: 10px; 
+    } 
+ 
+    ::-webkit-scrollbar-track { 
+      background: #0b0c0e; 
+    } 
+ 
+    ::-webkit-scrollbar-thumb { 
+      background: 
+        linear-gradient( 
+          #555, 
+          #222 
+        ); 
+ 
+      border-radius: 5px; 
+ 
+      border: 1px solid #666; 
+    } 
+ 
+    ::-webkit-scrollbar-thumb:hover { 
+      background: #777; 
+    } 
+ 
+    /* TABLET */ 
+    @media (max-width: 900px) { 
+ 
+      .four-sections { 
+        grid-template-columns: repeat(2, 1fr); 
+      } 
+ 
+    } 
+ 
+    /* TELEFON */ 
+    @media (max-width: 700px) { 
+ 
+      .screen { 
+        padding: 50px 40px; 
+      } 
+ 
+      .red-line-left { 
+        left: 10px; 
+      } 
+ 
+      .red-line-right { 
+        right: 10px; 
+      } 
+ 
+      .panel { 
+        padding: 25px; 
+      } 
+ 
+      h1 { 
+        font-size: 28px; 
+      } 
+ 
+      p { 
+        font-size: 14px; 
+      } 
+ 
+      .four-sections { 
+        grid-template-columns: 1fr; 
+      } 
+ 
+      .small-section { 
+        min-height: 350px; 
+      } 
+ 
+    } 
+  </style> 
+</head> 
+ 
+<body> 
+ 
+  <!-- KIRMIZI KENAR IŞIKLARI --> 
+  <div class="red-line-left"></div> 
+  <div class="red-line-right"></div> 
+ 
+ 
+  <!-- ANA EKRAN --> 
+  <main class="screen"> 
+ 
+ 
+    <!-- START HERE --> 
+    <section class="panel"> 
+ 
+      <h1> 
+        <a 
+          href="#" 
+          class="blue-link" 
+          onclick="return false;" 
+        > 
+          Start Here 
+        </a> 
+      </h1> 
+ 
+      <div class="metal-line"></div> 
+ 
+      <p> 
+        Start Your Business Now In 
+ 
+        <a 
+          href="#" 
+          class="blue-link" 
+          onclick="return false;" 
+        > 
+          Here 
+        </a> 
+ 
+        More Info 
+ 
+        <a 
+          href="#" 
+          class="blue-link" 
+          onclick="return false;" 
+        > 
+          Here 
+        </a> 
+      </p> 
+ 
+    </section> 
+ 
+ 
+    <!-- 4 EGG BÖLÜMÜ --> 
+    <section class="four-sections"> 
+ 
+ 
+      <!-- 1. EGG --> 
+      <div class="small-section"> 
+ 
+        <div class="egg-title"> 
+          EGG 
+        </div> 
+ 
+        <img 
+          src="png1.png" 
+          alt="EGG" 
+          class="item-image" 
+        > 
+ 
+        <button 
+          class="get-button" 
+          type="button" 
+          onclick="return false;" 
+        > 
+          GET 
+        </button> 
+ 
+      </div> 
+ 
+ 
+      <!-- 2. MEATMAN EGG --> 
+      <div class="small-section"> 
+ 
+        <div class="egg-title"> 
+          MEATMAN EGG 
+        </div> 
+ 
+        <img 
+          src="png2.png" 
+          alt="MEATMAN EGG" 
+          class="item-image" 
+        > 
+ 
+        <button 
+          class="get-button" 
+          type="button" 
+          onclick="return false;" 
+        > 
+          GET 
+        </button> 
+ 
+      </div> 
+ 
+ 
+      <!-- 3. GOOGOO EGG --> 
+      <div class="small-section"> 
+ 
+        <div class="egg-title"> 
+          GOOGOO EGG 
+        </div> 
+ 
+        <img 
+          src="png3.png" 
+          alt="GOOGOO EGG" 
+          class="item-image" 
+        > 
+ 
+        <!-- NORMAL GET --> 
+        <button 
+          id="googooGet" 
+          class="get-button" 
+          type="button" 
+          onclick="showGoogooOptions(event)" 
+        > 
+          GET 
+        </button> 
+ 
+        <!-- GET'E BASINCA ÇIKAN BUTONLAR --> 
+        <div 
+          id="googooButtons" 
+          class="googoo-buttons" 
+          style="display: none;" 
+        > 
+ 
+          <!-- 0.99$ --> 
+          <button 
+            class="googoo-button yellow-button" 
+            type="button" 
+            onclick="return false;" 
+          > 
+            0.99$ 
+          </button> 
+ 
+          <!-- 30 GOLD --> 
+          <button 
+            class="googoo-button green-button" 
+            type="button" 
+            onclick="return false;" 
+          > 
+ 
+            <span class="crossed-gold"> 
+              30 GOLD 
+            </span> 
+ 
+            <!-- SAĞ ÜSTTEKİ 10 --> 
+            <span class="gold-number"> 
+              10 
+            </span> 
+ 
+          </button> 
+ 
+        </div> 
+ 
+      </div> 
+ 
+ 
+      <!-- 4. SECRET EGG --> 
+      <div class="small-section"> 
+ 
+        <div class="egg-title"> 
+          SECRET EGG 
+        </div> 
+ 
+        <img 
+          src="png4.png" 
+          alt="SECRET EGG" 
+          class="item-image" 
+        > 
+ 
+        <button 
+          class="get-button" 
+          type="button" 
+          onclick="return false;" 
+        > 
+          GET 
+        </button> 
+ 
+      </div> 
+ 
+ 
+    </section> 
+ 
+  </main> 
+ 
+ 
+  <script> 
+    function showGoogooOptions(event) { 
+ 
+      event.stopPropagation(); 
+ 
+      const getButton = document.getElementById("googooGet"); 
+      const buttons = document.getElementById("googooButtons"); 
+ 
+      getButton.style.display = "none"; 
+      buttons.style.display = "flex"; 
+ 
+      setTimeout(function() { 
+ 
+        buttons.style.display = "none"; 
+        getButton.style.display = "block"; 
+ 
+      }, 15000); 
+    } 
+  </script> 
+ 
+</body> 
 </html>
 
